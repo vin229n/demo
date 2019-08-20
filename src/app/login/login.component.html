@@ -21,4 +21,5 @@
   </form>
   
   <button type="submit" class="btn btn-success mt-3" (click)="register()">Register</button>
+  <div class="alert alert-danger mt-3" *ngIf="invalidCredentials">Invalid Credentials</div>
 </div>

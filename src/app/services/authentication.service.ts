@@ -6,7 +6,7 @@ import {User} from '../models/user'
 })
 export class AuthenticationService {
   users:User[] = []
-  isAuthenticated:Boolean = false
+  private isAuthenticated:Boolean = false
   constructor() { }
 
   isAuth()
@@ -14,17 +14,15 @@ export class AuthenticationService {
     return this.isAuthenticated
   }
 
-  logIn(username:String,password:String):Boolean
+  logIn(username:String,password:String)
   {
     this.users.forEach((user)=>{
       if(user.name === username && password === user.password)
       {
-        alert("yes")
         this.isAuthenticated = true
-        return true
       }      
     })
-    return false
+    
   }
 
   register(username:String,password:String)

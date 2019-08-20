@@ -15,6 +15,7 @@ import { Router } from '@angular/router';
 })
 export class LoginComponent implements OnInit {
   form: FormGroup;
+  invalidCredentials:Boolean = false;
 
   constructor(private auth:AuthenticationService,private router:Router) {
    }
@@ -55,10 +56,12 @@ export class LoginComponent implements OnInit {
   logIn()
   {
     if(this.form.valid){
-      let check:Boolean = this.auth.logIn(this.form.value.name,this.form.value.password)
-      alert(check)
-      if(check)
-        this.router.navigate(['home'])
+      this.auth.logIn(this.form.value.name,this.form.value.password)
+      if(this.auth.isAuth())
+        this.router.navigate(['home']);
+      else{
+        
+      }
         
       }
   }
