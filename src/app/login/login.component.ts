@@ -53,20 +53,18 @@ export class LoginComponent implements OnInit {
   }
 
 
-  logIn()
-  {
-    if(this.form.valid){
-      this.auth.logIn(this.form.value.name,this.form.value.password)
-      if(this.auth.isAuth())
+  logIn() {
+    if (this.form.valid) {
+      this.auth.logIn(this.form.value.name, this.form.value.password);
+      if (this.auth.isAuth()) {
         this.router.navigate(['home']);
-      else{
-        this.invalidCredentials=true
-        setTimeout(()=>{
-          this.invalidCredentials=false
-        },3000)
+      } else {
+        this.invalidCredentials = true;
+        setTimeout(() => {
+          this.invalidCredentials = false;
+        }, 3000);
       }
-        
-      }
+    }
   }
 
   register()
