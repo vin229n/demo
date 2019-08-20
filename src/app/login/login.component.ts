@@ -60,7 +60,10 @@ export class LoginComponent implements OnInit {
       if(this.auth.isAuth())
         this.router.navigate(['home']);
       else{
-        
+        this.invalidCredentials=true
+        setTimeout(()=>{
+          this.invalidCredentials=false
+        },3000)
       }
         
       }
