@@ -15,13 +15,13 @@ import { Router } from '@angular/router';
 })
 export class LoginComponent implements OnInit {
   form: FormGroup;
-  invalidCredentials:Boolean = false;
+  invalidCredentials = false;
 
-  constructor(private auth:AuthenticationService,private router:Router) {
+  constructor(private auth: AuthenticationService, private router: Router) {
    }
 
    ngOnInit() {
-    this.createForm()
+    this.createForm();
   }
 
   private createForm() {
@@ -40,7 +40,6 @@ export class LoginComponent implements OnInit {
           Validators.minLength(10),
         ],
       )
-     
     });
   }
 
@@ -69,6 +68,6 @@ export class LoginComponent implements OnInit {
 
   register()
   {
-    this.router.navigate(['register'])
+    this.router.navigate(['register']);
   }
 }
