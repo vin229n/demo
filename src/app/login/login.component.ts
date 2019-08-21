@@ -6,6 +6,7 @@ import {
   Validators,
 } from '@angular/forms';
 import { Router } from '@angular/router';
+import { User } from '../models/user';
 
 
 @Component({
@@ -54,21 +55,29 @@ export class LoginComponent implements OnInit {
 
   logIn() {
     if (this.form.valid) {
-      
-      this.auth.logIn(this.form.value.name, this.form.value.password);
-      if (this.auth.isAuth()) {
-        this.router.navigate(['home']);
-      } else {
-        this.invalidCredentials = true;
-        setTimeout(() => {
-          this.invalidCredentials = false;
-        }, 3000);
-      }
+      this.auth.getUsers()
+      .subscribe(
+        (users: User[]) => {
+          users.forEach((user) => {
+            if (user.name === this.form.value.name && user.password === this.form.value.password) {
+              this.auth.logIn(user);
+              this.router.navigate(['home']);
+              return;
+            }
+          });
+          this.invalidCredentials = true;
+          setTimeout(() => {
+            this.invalidCredentials = false;
+          }, 3000);
+        },
+        (error) => {
+          console.log('Error in AuthenticationService login', error);
+        }
+      );
     }
   }
 
-  register()
-  {
+  register() {
     this.router.navigate(['register']);
   }
 }

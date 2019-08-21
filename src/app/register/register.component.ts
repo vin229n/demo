@@ -6,6 +6,7 @@ import {
   Validators,
 } from '@angular/forms';
 import { Router } from '@angular/router';
+import { User } from '../models/user';
 
 @Component({
   selector: 'app-register',
@@ -18,7 +19,7 @@ export class RegisterComponent implements OnInit {
   constructor(private auth:AuthenticationService,private router:Router) { }
 
   ngOnInit() {
-    this.createForm()
+    this.createForm();
   }
 
   private createForm() {
@@ -52,8 +53,14 @@ export class RegisterComponent implements OnInit {
   register()
   {
     if(this.form.valid){
-      this.auth.register(this.form.value.name,this.form.value.password)
-      this.router.navigate(['login'])
+      this.auth.register(this.form.value.name, this.form.value.password)
+      .subscribe(
+          (userr: User) => {console.log('added user successfully', userr);
+            this.router.navigate(['login']);
+          },
+          (error) => {console.log('Error in register:', error);
+          });
+      
       }
   }
   
