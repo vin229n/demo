@@ -5,8 +5,8 @@ import {User} from '../models/user'
   providedIn: 'root'
 })
 export class AuthenticationService {
-  users: User[] = [];
-  currentUser: User;
+  private users: User[] = [];
+  private currentUser: User;
   private authenticated = false;
   constructor() { }
 

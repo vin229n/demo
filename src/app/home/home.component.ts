@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { AuthenticationService } from '../services/authentication.service';
 import { User } from '../models/user';
 import { Router } from '@angular/router';
+import { ApiService } from '../services/api.service';
 
 @Component({
   selector: 'app-home',
@@ -10,9 +11,12 @@ import { Router } from '@angular/router';
 })
 export class HomeComponent implements OnInit {
   user: User;
-  constructor(private auth: AuthenticationService, private router: Router) { }
+  data:any;
+  constructor(private auth: AuthenticationService, private router: Router,private api:ApiService) { }
+  
 
   ngOnInit() {
+    this.user = this.auth.getUser();
     if (this.auth.isAuth()) {
       this.user = this.auth.getUser();
     } else {
@@ -20,10 +24,19 @@ export class HomeComponent implements OnInit {
     }
   }
 
-  logOut() {
+  logout() {
+    console.log("Asa");
     this.auth.logOut();
-    this.router.navigate(['home']);
-    console.log("ASdsd")
+    this.router.navigate(['login']);
+  }
+
+  hitApi() {
+    this.api.hit()
+    .subscribe(
+      data => {this.data=data; console.log("data ",data)},
+      error => {console.log("error ",error)}
+    );
+      
   }
 
 }
