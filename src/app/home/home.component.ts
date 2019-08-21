@@ -12,16 +12,12 @@ import { ApiService } from '../services/api.service';
 export class HomeComponent implements OnInit {
   user: User;
   data:any;
+  loading:boolean = false;
+  error=false;
   constructor(private auth: AuthenticationService, private router: Router,private api:ApiService) { }
   
 
   ngOnInit() {
-    this.user = this.auth.getUser();
-    if (this.auth.isAuth()) {
-      this.user = this.auth.getUser();
-    } else {
-      this.router.navigate(['login']);
-    }
   }
 
   logout() {
@@ -31,10 +27,12 @@ export class HomeComponent implements OnInit {
   }
 
   hitApi() {
+    this.loading = true
+    this.error = false;
     this.api.hit()
     .subscribe(
-      data => {this.data=data; console.log("data ",data)},
-      error => {console.log("error ",error)}
+      data => {this.data=data; console.log("data ",data);this.loading=false},
+      error => {console.log("error ",error);this.error=true;this.loading=false}
     );
       
   }

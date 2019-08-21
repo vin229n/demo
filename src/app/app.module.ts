@@ -10,12 +10,13 @@ import { HomeComponent } from './home/home.component';
 import { ApiService } from './services/api.service';
 import { HttpClientModule } from '@angular/common/http';
 import { TableComponent } from './table/table.component';
+import { AuthGuard } from './services/auth.guard';
 
 const appRoutes: Routes = [
   { path: '', component: LoginComponent },
   { path: 'login', component: LoginComponent },
-  { path: 'register', component:RegisterComponent},
-  { path: 'home', component:HomeComponent }
+  { path: 'register', component:RegisterComponent,},
+  { path: 'home', component:HomeComponent,canActivate:[AuthGuard] }
  
 ];
 
@@ -35,7 +36,7 @@ const appRoutes: Routes = [
     HttpClientModule
     
   ],
-  providers: [AuthenticationService,ApiService],
+  providers: [AuthenticationService,ApiService,AuthGuard],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
