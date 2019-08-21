@@ -23,6 +23,7 @@ export class HomeComponent implements OnInit {
   logOut() {
     this.auth.logOut();
     this.router.navigate(['home']);
+    console.log("ASdsd")
   }
 
 }
