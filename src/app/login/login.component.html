@@ -25,9 +25,12 @@
     </div>
     
     <button type="submit" class="btn btn-primary" >Login</button>
-    
+    <div class="spinner-grow text-primary" role="status" *ngIf="loading">
+      <span class="sr-only">Loading...</span>
+    </div>
   </form>
   
   <button type="submit" class="btn btn-success mt-3" (click)="register()">Register</button>
   <div class="alert alert-danger mt-3" *ngIf="invalidCredentials">Invalid Credentials</div>
+  <div class="alert alert-danger mt-3" *ngIf="!connection">Not able to connect</div>
 </div>

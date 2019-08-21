@@ -17,6 +17,8 @@ import { User } from '../models/user';
 export class LoginComponent implements OnInit {
   form: FormGroup;
   invalidCredentials = false;
+  loading = false;
+  connection = true;
 
   constructor(private auth: AuthenticationService, private router: Router) {
    }
@@ -55,6 +57,9 @@ export class LoginComponent implements OnInit {
 
   logIn() {
     if (this.form.valid) {
+      this.invalidCredentials = false;
+      this.connection = true;
+      this.loading = true;
       this.auth.getUsers()
       .subscribe(
         (users: User[]) => {
@@ -66,12 +71,15 @@ export class LoginComponent implements OnInit {
             }
           });
           this.invalidCredentials = true;
+          this.loading = false;
           setTimeout(() => {
             this.invalidCredentials = false;
           }, 3000);
         },
         (error) => {
           console.log('Error in AuthenticationService login', error);
+          this.loading = false;
+          this.connection = false;
         }
       );
     }
