@@ -54,6 +54,7 @@ export class LoginComponent implements OnInit {
 
   logIn() {
     if (this.form.valid) {
+      
       this.auth.logIn(this.form.value.name, this.form.value.password);
       if (this.auth.isAuth()) {
         this.router.navigate(['home']);

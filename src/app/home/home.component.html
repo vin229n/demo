@@ -1,12 +1,19 @@
 <div class="container">
     <div class="card mt-5">
         <div class="card-header">
-          <h3>Welcome {{user.name}}</h3>
+          <h3>Welcome {{user?.name}}</h3>
         </div>
         <div class="card-body">
-          <h5 class="card-title">Title</h5>
-          <p class="card-text">Table goes here</p>
+          <button class="btn btn-success mt-1 mb-3 " (click)="hitApi()">Get Info</button>
+          <div class="d-flex justify-content-left m-3" *ngIf="loading">
+            <div class="spinner-grow text-primary" role="status">
+              <span class="sr-only">Loading...</span>
+            </div>
+          </div>
+
+          <div class="alert alert-danger m-3" *ngIf="error">Something went wrong</div>
+          <app-table [response]="data"></app-table>
         </div>
     </div>
-    <button class="btn btn-warning mt-3">LogOut</button>
+    <button class="btn btn-warning mt-3" (click)="logout()">LogOut</button>
 </div>

@@ -7,12 +7,16 @@ import { AuthenticationService } from './services/authentication.service';
 import { RegisterComponent } from './register/register.component';
 import { RouterModule, Routes } from '@angular/router';
 import { HomeComponent } from './home/home.component';
+import { ApiService } from './services/api.service';
+import { HttpClientModule } from '@angular/common/http';
+import { TableComponent } from './table/table.component';
+import { AuthGuard } from './services/auth.guard';
 
 const appRoutes: Routes = [
   { path: '', component: LoginComponent },
   { path: 'login', component: LoginComponent },
-  { path: 'register', component:RegisterComponent},
-  { path: 'home', component:HomeComponent }
+  { path: 'register', component:RegisterComponent,},
+  { path: 'home', component:HomeComponent,canActivate:[AuthGuard] }
  
 ];
 
@@ -21,16 +25,18 @@ const appRoutes: Routes = [
     AppComponent,
     LoginComponent,
     RegisterComponent,
-    HomeComponent
+    HomeComponent,
+    TableComponent
   ],
   imports: [
     BrowserModule,
     FormsModule,
     RouterModule.forRoot(appRoutes),
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    HttpClientModule
     
   ],
-  providers: [AuthenticationService],
+  providers: [AuthenticationService,ApiService,AuthGuard],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
