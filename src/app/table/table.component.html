@@ -1,4 +1,4 @@
-<table class="table table-striped" *ngIf="issue">
+<table class="table table-striped" >
     <thead>
       <tr>
         <th scope="col">Project Name </th>
@@ -12,7 +12,7 @@
     </thead>
 
     <tbody>
-      <!-- <tr *ngFor="let issue of response?.issues">
+      <tr *ngFor="let issue of response?.issues">
           <td >{{issue?.fields?.project?.name}}</td>
 
           <td >{{issue?.id}}</td>
@@ -27,6 +27,6 @@
           
           <td>{{issue?.fields?.issuetype?.description}}</td>
           
-      </tr> -->
+      </tr>
     </tbody>
 </table>
