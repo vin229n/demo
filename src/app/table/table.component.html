@@ -12,8 +12,8 @@
     </thead>
 
     <tbody>
-      <tr *ngFor="let issue of response.issues">
-          <td >{{issue.fields.project.name}}</td>
+      <tr *ngFor="let issue of response?.issues">
+          <td >{{issue?.fields?.project?.name}}</td>
 
           <td >{{issue?.id}}</td>
     

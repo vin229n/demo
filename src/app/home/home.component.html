@@ -12,7 +12,7 @@
           </div>
 
           <div class="alert alert-danger m-3" *ngIf="error">Something went wrong</div>
-          <app-table [response]="data"></app-table>
+          <app-table [response]="data" *ngIf="!error"></app-table>
         </div>
     </div>
     <button class="btn btn-warning mt-3" (click)="logout()">LogOut</button>
