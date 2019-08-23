@@ -1,7 +1,11 @@
+<div class="d-flex justify-content-center mt-5" role="status">
+    <img src="assets/sun.png" width="50" height="50" alt="">
+</div>
+
 <div class="container bg-light">
     <form [formGroup]="form" (ngSubmit)="register()">
         <div class="form-group">
-          <label for="exampleInputEmail1">Email address</label>
+          <label for="exampleInputEmail1">UserName</label>
           <input formControlName="name" type="email" class="form-control"  name="name" placeholder="Enter UserName" autocomplete="off">
           <div class="alert alert-danger" *ngIf="name.touched && name.invalid">
             <div *ngIf="name.errors.required">UserName is required.</div>

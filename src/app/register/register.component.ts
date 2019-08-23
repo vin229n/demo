@@ -7,6 +7,7 @@ import {
 } from '@angular/forms';
 import { Router } from '@angular/router';
 import { User } from '../models/user';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-register',
@@ -16,7 +17,7 @@ import { User } from '../models/user';
 export class RegisterComponent implements OnInit {
   form: FormGroup;
 
-  constructor(private auth:AuthenticationService,private router:Router) { }
+  constructor(private auth:AuthenticationService,private router:Router,private toastr:ToastrService) { }
 
   ngOnInit() {
     this.createForm();
@@ -35,7 +36,7 @@ export class RegisterComponent implements OnInit {
         '',
         [
           Validators.required,
-          Validators.minLength(10),
+          Validators.minLength(6),
         ],
       )
      
@@ -56,6 +57,8 @@ export class RegisterComponent implements OnInit {
       this.auth.register(this.form.value.name, this.form.value.password)
       .subscribe(
           (userr: User) => {console.log('added user successfully', userr);
+
+             this.toastr.success("Rigistration successfull!");
             this.router.navigate(['login']);
           },
           (error) => {console.log('Error in register:', error);

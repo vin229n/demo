@@ -1,6 +1,5 @@
 import { Injectable, OnInit } from '@angular/core';
 import {User} from '../models/user'
-import { DbService } from './db.service';
 import { HttpClient } from '@angular/common/http';
 
 @Injectable({
@@ -10,7 +9,7 @@ export class AuthenticationService {
   private currentUser: User;
   private authenticated = false;
   private apiUrl = 'http://localhost:3000/users';
-  constructor(private db: DbService, private http: HttpClient) { }
+  constructor( private http: HttpClient) { }
 
   isAuth() {
     return this.authenticated;

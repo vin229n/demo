@@ -3,6 +3,7 @@ import { AuthenticationService } from '../services/authentication.service';
 import { User } from '../models/user';
 import { Router } from '@angular/router';
 import { ApiService } from '../services/api.service';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-home',
@@ -14,24 +15,25 @@ export class HomeComponent implements OnInit {
   data:any;
   loading:boolean = false;
   error=false;
-  constructor(private auth: AuthenticationService, private router: Router,private api:ApiService) { }
+  constructor(private auth: AuthenticationService, private router: Router,private api:ApiService,private toastr: ToastrService) { }
   
 
   ngOnInit() {
+    this.hitApi();
+    
   }
 
-  logout() {
-    console.log("Asa");
-    this.auth.logOut();
-    this.router.navigate(['login']);
-  }
+
 
   hitApi() {
     this.loading = true
     this.error = false;
     this.api.hit()
     .subscribe(
-      data => {this.data=data; console.log("data ",data);this.loading=false},
+      data => {
+        this.data=data; this.loading=false
+
+      },
       error => {console.log("error ",error);this.error=true;this.loading=false}
     );
       
