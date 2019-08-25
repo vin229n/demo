@@ -1,32 +1,19 @@
-<table class="table table-striped" >
-    <thead>
-      <tr>
-        <th scope="col">Project Name </th>
-        <th scope="col">IssueID</th>
-        <th scope="col">Summary</th>
-        <th scope="col">Status</th>
-        <th scope="col">Status Category</th>
-        <th scope="col">Priority</th>
-        <th scope="col">Issue Type</th>
-      </tr>
-    </thead>
 
-    <tbody>
-      <tr *ngFor="let issue of response?.issues">
-          <td >{{issue?.fields?.project?.name}}</td>
+  <div class="card mb-5" *ngFor="let day of response?.daily?.data;let i=index">
+    <div class="card-header d-flex justify-content-between bg-dark"> 
+      <h5 style="display:inline;color:aliceblue" > {{(day.time*1000) | date : 'fullDate' }}</h5>
+      <button  (click)="toggleChart()" *ngIf="i===0"><img src="assets/plus.png"  width="20" height="20" alt="" ></button>
+    </div>
+    <div class="card-body">
+      <h5 class="card-title"></h5>
+      <app-chart *ngIf="chart" [chartData]="response.hourly"></app-chart>
+      <p class="card-text" *ngIf="i === 0"> {{response?.currently.summary}}</p>
+      <p class="card-text" *ngIf="i !== 0"> {{day?.summary}}</p>
+      <p class="card-text" *ngIf="i === 0">
+        <span class="font-weight-bold">Temperature:</span> {{response?.currently.temperature}} F
+        <span class="font-weight-bold ml-3">Humidity:</span> {{(response?.currently.humidity)*100}}% 
+        <span class="font-weight-bold ml-3">Wind:</span> {{response?.currently.windSpeed}} mph
+      </p>
+    </div>
+  </div>
 
-          <td >{{issue?.id}}</td>
-    
-          <td>{{issue?.fields?.parent?.fields?.summary}}</td>
-          
-          <td>{{issue?.fields?.parent?.fields?.status?.name}}</td>
-          
-          <td>{{issue?.fields?.parent?.fields?.status?.statusCategory?.name}}</td>
-          
-          <td>{{issue?.fields?.parent?.fields?.priority?.name}}</td>
-          
-          <td>{{issue?.fields?.issuetype?.description}}</td>
-          
-      </tr>
-    </tbody>
-</table>

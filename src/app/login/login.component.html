@@ -1,9 +1,12 @@
+<div class="d-flex justify-content-center mt-5" role="status">
+    <img src="assets/sun.png" width="50" height="50">
+</div>
+
 <div class="container bg-light" >
   <form [formGroup]="form" (ngSubmit)="logIn()">
-    
     <div class="form-group">
       
-      <label for="exampleInputEmail1">Email address</label>
+      <label for="exampleInputEmail1">UserName</label>
       <input formControlName="name" type="email" class="form-control" name="email" placeholder="Enter email" autocomplete="off" >
       
       <div class="alert alert-danger" *ngIf="name.touched && name.invalid">
@@ -25,7 +28,9 @@
     </div>
     
     <button type="submit" class="btn btn-primary" >Login</button>
-    <div class="spinner-grow text-primary" role="status" *ngIf="loading">
+   
+
+    <div class="spinner-border ml-2" role="status" *ngIf="loading" style="width:25px;height:25px">
       <span class="sr-only">Loading...</span>
     </div>
   </form>

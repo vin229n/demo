@@ -11,12 +11,19 @@ import { ApiService } from './services/api.service';
 import { HttpClientModule } from '@angular/common/http';
 import { TableComponent } from './table/table.component';
 import { AuthGuard } from './services/auth.guard';
+import { HeaderComponent } from './header/header.component';
+import { ChartComponent } from './chart/chart.component';
+import { ChartsModule } from 'ng2-charts';
+import { ToastrModule } from 'ngx-toastr';
+import { CommonModule } from '@angular/common';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { SearchComponent } from './search/search.component';
 
 const appRoutes: Routes = [
   { path: '', component: LoginComponent },
   { path: 'login', component: LoginComponent },
   { path: 'register', component:RegisterComponent,},
-  { path: 'home', component:HomeComponent,canActivate:[AuthGuard] }
+  { path: 'home', component:HomeComponent,canActivate: [AuthGuard] }
  
 ];
 
@@ -26,14 +33,22 @@ const appRoutes: Routes = [
     LoginComponent,
     RegisterComponent,
     HomeComponent,
-    TableComponent
+    TableComponent,
+    HeaderComponent,
+    ChartComponent,
+    SearchComponent,
+    
   ],
   imports: [
     BrowserModule,
     FormsModule,
     RouterModule.forRoot(appRoutes),
     ReactiveFormsModule,
-    HttpClientModule
+    HttpClientModule,
+    ChartsModule,
+    CommonModule,
+    BrowserAnimationsModule,
+    ToastrModule.forRoot({timeOut: 3000,positionClass: 'toast-bottom-center',preventDuplicates: true})
     
   ],
   providers: [AuthenticationService,ApiService,AuthGuard],
