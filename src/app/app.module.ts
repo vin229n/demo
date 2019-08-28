@@ -18,13 +18,11 @@ import { ToastrModule } from 'ngx-toastr';
 import { CommonModule } from '@angular/common';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { SearchComponent } from './search/search.component';
-
+import { BsDropdownModule } from 'ngx-bootstrap';
 const appRoutes: Routes = [
-  { path: '', component: LoginComponent },
   { path: 'login', component: LoginComponent },
-  { path: 'register', component:RegisterComponent,},
-  { path: 'home', component:HomeComponent,canActivate: [AuthGuard] }
- 
+  { path: 'register', component: RegisterComponent},
+  { path: '', component: HomeComponent, canActivate: [AuthGuard] }
 ];
 
 @NgModule({
@@ -37,7 +35,6 @@ const appRoutes: Routes = [
     HeaderComponent,
     ChartComponent,
     SearchComponent,
-    
   ],
   imports: [
     BrowserModule,
@@ -48,10 +45,10 @@ const appRoutes: Routes = [
     ChartsModule,
     CommonModule,
     BrowserAnimationsModule,
-    ToastrModule.forRoot({timeOut: 3000,positionClass: 'toast-bottom-center',preventDuplicates: true})
-    
+    ToastrModule.forRoot({timeOut: 3000, positionClass: 'toast-bottom-center', preventDuplicates: true}),
+    BsDropdownModule.forRoot()
   ],
-  providers: [AuthenticationService,ApiService,AuthGuard],
+  providers: [AuthenticationService, ApiService, AuthGuard],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

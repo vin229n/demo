@@ -17,6 +17,7 @@ export class HomeComponent implements OnInit {
   loading = false;
   error = false;
   constructor(private auth: AuthenticationService, private router: Router, private api: ApiService, private toastr: ToastrService) { }
+  
   ngOnInit() {
     this.hitApi();
   }

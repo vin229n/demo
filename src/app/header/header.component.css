@@ -1,0 +1,18 @@
+button {
+    background: none;
+    outline: none;
+    border: none;
+    
+}
+
+button:focus{
+    background: none;
+    outline:  none;
+    border: none;
+
+}
+
+.btnn{
+    margin: 10px;
+   
+}

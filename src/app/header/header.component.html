@@ -14,6 +14,21 @@
 
     </ul>
 
+    <div class="btn-group mr-3" dropdown>
+        <button id="button-basic" dropdownToggle type="button" >
+          <img src="assets/user.png"> 
+        </button>
+        <div id="dropdown-basic" *dropdownMenu class="dropdown-menu"
+            role="menu" aria-labelledby="button-basic">
+          <li role="menuitem">
+            <div class="h4 m-3">{{user.name}}</div>
+          </li>
+          <li role="menuitem">
+            <button  (click)="logout()" class="btnn">Logout</button>
+          </li>
+        </div>
+      </div>
+
     <form class="form-inline ">
         <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search" name="search" [(ngModel)]="searchText">
         <button class="btn btn-outline-success my-2 my-sm-0" (click)="onSubmit()">Search</button>
@@ -22,8 +37,5 @@
         </div>
     </form>
 
-    <div class="my-2 my-lg-0 ml-3">
-      <button class="btn btn-warning" (click)="logout()">Logout</button>
-    </div>
   </div>
 </nav>

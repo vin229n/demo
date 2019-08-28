@@ -66,7 +66,7 @@ export class LoginComponent implements OnInit {
           users.forEach((user) => {
             if (user.name === this.form.value.name && user.password === this.form.value.password) {
               this.auth.logIn(user);
-              this.router.navigate(['home']);
+              this.router.navigate(['']);
               return;
             }
           });

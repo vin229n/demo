@@ -7,12 +7,16 @@ import { HttpClient } from '@angular/common/http';
 })
 export class AuthenticationService {
   private currentUser: User;
-  private authenticated = false;
   private apiUrl = 'http://localhost:3000/users';
   constructor( private http: HttpClient) { }
 
   isAuth() {
-    return this.authenticated;
+    if (localStorage.length > 0) {
+      this.currentUser = JSON.parse(localStorage.getItem('userInfo'));
+      return true;
+    } else {
+      return false;
+    }
   }
 
   getUser() {
@@ -20,8 +24,9 @@ export class AuthenticationService {
   }
 
   logIn(user: User) {
-    this.authenticated = true;
     this.currentUser = user;
+    const key = 'userInfo';
+    localStorage.setItem(key, JSON.stringify(this.currentUser));
   }
 
   register(username: string, password: string) {
@@ -32,7 +37,7 @@ export class AuthenticationService {
   }
 
   logOut() {
-    this.authenticated = false;
+    localStorage.clear();
     this.currentUser = null;
   }
 

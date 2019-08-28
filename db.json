@@ -1,64 +1,9 @@
 {
   "users": [
     {
-      "id": 1,
-      "name": "vinayak",
-      "password": "1234567890"
-    },
-    {
-      "name": "sadasdasdad",
-      "password": "1234567890",
-      "id": 2
-    },
-    {
-      "name": "sajdksajdsa",
-      "password": "sadsadsadsadsadsad",
-      "id": 3
-    },
-    {
-      "name": "vinayak",
-      "password": "1234567890",
-      "id": 4
-    },
-    {
       "name": "somesh",
-      "password": "qwertyuiop",
-      "id": 5
-    },
-    {
-      "name": "sujay",
-      "password": "1234567890",
-      "id": 6
-    },
-    {
-      "name": "sdfdsfsafas",
-      "password": "asfasfsdfasfasdfasdf",
-      "id": 7
-    },
-    {
-      "name": "Gourav",
-      "password": "qwertyuiop",
-      "id": 8
-    },
-    {
-      "name": "sadasdasdsad",
-      "password": "asdsadsadsada",
-      "id": 9
-    },
-    {
-      "name": "sadasdasd",
-      "password": "asdsadsadas",
-      "id": 10
-    },
-    {
-      "name": "somesh",
-      "password": "qwertyuiop",
-      "id": 11
-    },
-    {
-      "name": "sujay",
-      "password": "123456",
-      "id": 12
+      "password": "22914604",
+      "id": 1
     }
   ]
 }
