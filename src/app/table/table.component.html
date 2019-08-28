@@ -6,7 +6,7 @@
     </div>
     <div class="card-body">
       <h5 class="card-title"></h5>
-      <app-chart *ngIf="chart" [chartData]="response.hourly"></app-chart>
+      <app-chart *ngIf="chart && i===0" [chartData]="response.hourly"></app-chart>
       <p class="card-text" *ngIf="i === 0"> {{response?.currently.summary}}</p>
       <p class="card-text" *ngIf="i !== 0"> {{day?.summary}}</p>
       <p class="card-text" *ngIf="i === 0">

@@ -28,14 +28,14 @@
     </div>
     
     <button type="submit" class="btn btn-primary" >Login</button>
-   
+    <button  class="btn btn-success ml-3" (click)="register()">Register</button>
 
     <div class="spinner-border ml-2" role="status" *ngIf="loading" style="width:25px;height:25px">
       <span class="sr-only">Loading...</span>
     </div>
   </form>
   
-  <button type="submit" class="btn btn-success mt-3" (click)="register()">Register</button>
+  
   <div class="alert alert-danger mt-3" *ngIf="invalidCredentials">Invalid Credentials</div>
   <div class="alert alert-danger mt-3" *ngIf="!connection">Not able to connect</div>
 </div>

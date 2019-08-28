@@ -26,27 +26,44 @@ export class HeaderComponent implements OnInit {
   onSubmit() {
     if (this.searchText !== undefined) {
       this.loading = true;
-      this.api.getLocation(this.searchText)
+      this.getLocation();
+    } else {
+      this.toastr.error('Please provide address');
+    }
+  }
+
+  getLocation()
+  {
+    this.api.getLocation(this.searchText)
       .subscribe(
         (res: any) => {
-          console.log(res.features.length);
           if (res.features.length !== 0 ) {
-            this.api.hit(res.features[0].center[1], res.features[0].center[0])
-          .subscribe(
-            (data) => {
-              this.gotSearchResults.emit({data, location: res.features[0].place_name });
-              this.loading = false ; console.log(data); },
-            (err) => { this.toastr.error('Please provide address'); this.loading = false; }
-          ); } else {
+            this.getWeather(res)
+          } else {
             this.toastr.error('Sorry! Not able to find location');
             this.loading = false;
           }
         },
-        (err) => { this.toastr.error('Sorry! Not able to find location'); this.loading = false; }
+        (err) => { 
+          this.toastr.error('Sorry! Not able to find location');
+           this.loading = false; 
+        }
       );
-    } else {
-      this.toastr.error('Please provide address');
-    }
+  }
+
+  getWeather(res)
+  {
+    this.api.hit(res.features[0].center[1], res.features[0].center[0])
+    .subscribe(
+      (data) => {
+        this.gotSearchResults.emit({data, location: res.features[0].place_name });
+        this.loading = false ; console.log(data);
+       },
+      (err) => { 
+        this.toastr.error('Please provide address'); 
+        this.loading = false;
+       }
+    );
   }
 
 }

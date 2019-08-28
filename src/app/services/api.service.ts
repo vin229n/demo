@@ -9,14 +9,6 @@ export class ApiService {
 
   hit(lat: string = '12.9716', lang: string = '77.5946') {
     const url = 'https://cors-anywhere.herokuapp.com/https://api.darksky.net/forecast/522bb5225180bbf1a93af4cb87c980c8/' + lat + ',' + lang;
-    // const authorizationData = 'Basic YnJpbGxpby1qaXJhOkJyaWxsaW9BZG1pbg==';
-
-    // const headerOptions = {
-    //   headers: new HttpHeaders({
-    //       'Content-Type':  'application/json',
-    //       'Authorization':  authorizationData
-    //   })
-    // };
     return this.http.get(url);
   }
 
