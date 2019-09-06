@@ -19,10 +19,15 @@ import { CommonModule } from '@angular/common';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { SearchComponent } from './search/search.component';
 import { BsDropdownModule } from 'ngx-bootstrap';
+import { NotFoundComponent } from './not-found/not-found.component';
 const appRoutes: Routes = [
   { path: 'login', component: LoginComponent },
   { path: 'register', component: RegisterComponent},
-  { path: '', component: HomeComponent, canActivate: [AuthGuard] }
+  { path: '', component: HomeComponent, canActivate: [AuthGuard] },
+  {
+    path: '**',
+    component: NotFoundComponent
+  }
 ];
 
 @NgModule({
@@ -35,6 +40,7 @@ const appRoutes: Routes = [
     HeaderComponent,
     ChartComponent,
     SearchComponent,
+    NotFoundComponent,
   ],
   imports: [
     BrowserModule,

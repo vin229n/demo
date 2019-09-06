@@ -9,33 +9,27 @@
   <div class="collapse navbar-collapse" id="navbarSupportedContent">
     <ul class="navbar-nav mr-auto">
       <li class="nav-item active">
-        <a class="nav-link" routerLink="/home" routerLinkActive="active">Home <span class="sr-only">(current)</span></a>
+        <a class="nav-link" routerLink="/" routerLinkActive="active">Home <span class="sr-only">(current)</span></a>
       </li>
 
     </ul>
 
-    <div class="btn-group mr-3" dropdown>
+    <div class="btn-group" dropdown style="margin-right:90px">
         <button id="button-basic" dropdownToggle type="button" >
           <img src="assets/user.png"> 
         </button>
         <div id="dropdown-basic" *dropdownMenu class="dropdown-menu"
-            role="menu" aria-labelledby="button-basic">
-          <li role="menuitem">
-            <div class="h4 m-3">{{user.name}}</div>
+            role="menu" aria-labelledby="button-basic"  style="margin-right:190px">
+          <li role="menuitem" class="li">
+            <div class="h5">{{user.name}}</div>
           </li>
-          <li role="menuitem">
-            <button  (click)="logout()" class="btnn">Logout</button>
+          <li role="menuitem" class="li">
+            <button  (click)="logout()" class="btnn" style="font-size: 15px">Logout</button>
           </li>
         </div>
       </div>
 
-    <form class="form-inline ">
-        <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search" name="search" [(ngModel)]="searchText">
-        <button class="btn btn-outline-success my-2 my-sm-0" (click)="onSubmit()">Search</button>
-        <div class="spinner-border ml-2" role="status" *ngIf="loading">
-            <span class="sr-only">Loading...</span>
-        </div>
-    </form>
+
 
   </div>
 </nav>

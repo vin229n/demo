@@ -7,7 +7,8 @@ import { HttpClient } from '@angular/common/http';
 })
 export class AuthenticationService {
   private currentUser: User;
-  private apiUrl = 'http://localhost:3000/users';
+  // private apiUrl = 'http://localhost:3000/users';
+  private apiUrl = 'http://localhost:8000/';
   constructor( private http: HttpClient) { }
 
   isAuth() {
@@ -43,11 +44,12 @@ export class AuthenticationService {
 
 
   insertUser(user: User) {
-    return this.http.post(this.apiUrl, user);
+    return this.http.post(this.apiUrl+'register', user);
   }
 
   getUsers() {
-    return this.http.get(this.apiUrl);
+    console.log("sadjsakdjd")
+    return this.http.get(this.apiUrl+'users');
   }
 
 }

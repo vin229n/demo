@@ -16,7 +16,7 @@ export class HeaderComponent implements OnInit {
   searchText: string;
   loading = false;
   user: User;
-  constructor(private auth: AuthenticationService, private router: Router, private api: ApiService,private toastr: ToastrService) { }
+  constructor(private auth: AuthenticationService, private router: Router) { }
 
   ngOnInit() {
     this.user = this.auth.getUser();
@@ -27,47 +27,8 @@ export class HeaderComponent implements OnInit {
     this.router.navigate(['login']);
   }
 
-  onSubmit() {
-    if (this.searchText !== undefined) {
-      this.loading = true;
-      this.getLocation();
-    } else {
-      this.toastr.error('Please provide address');
-    }
-  }
 
-  getLocation()
-  {
-    this.api.getLocation(this.searchText)
-      .subscribe(
-        (res: any) => {
-          if (res.features.length !== 0 ) {
-            this.getWeather(res)
-          } else {
-            this.toastr.error('Sorry! Not able to find location');
-            this.loading = false;
-          }
-        },
-        (err) => { 
-          this.toastr.error('Sorry! Not able to find location');
-           this.loading = false; 
-        }
-      );
-  }
 
-  getWeather(res)
-  {
-    this.api.hit(res.features[0].center[1], res.features[0].center[0])
-    .subscribe(
-      (data) => {
-        this.gotSearchResults.emit({data, location: res.features[0].place_name });
-        this.loading = false ; console.log(data);
-       },
-      (err) => { 
-        this.toastr.error('Please provide address'); 
-        this.loading = false;
-       }
-    );
-  }
+
 
 }

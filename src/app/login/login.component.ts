@@ -62,7 +62,8 @@ export class LoginComponent implements OnInit {
       this.loading = true;
       this.auth.getUsers()
       .subscribe(
-        (users: User[]) => {
+        (users: any) => {
+          console.log(users);
           users.forEach((user) => {
             if (user.name === this.form.value.name && user.password === this.form.value.password) {
               this.auth.logIn(user);

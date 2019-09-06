@@ -25,7 +25,7 @@ constructor(private datepipe:DatePipe){
   
   
 
-  public lineChartOptions: (ChartOptions & { responsive: true }) = {
+  public lineChartOptions: (ChartOptions & { responsive: boolean }) = {
     responsive: true,
   };
   

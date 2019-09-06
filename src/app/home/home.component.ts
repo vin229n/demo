@@ -19,27 +19,34 @@ export class HomeComponent implements OnInit {
   constructor(private auth: AuthenticationService, private router: Router, private api: ApiService, private toastr: ToastrService) { }
   
   ngOnInit() {
-    this.hitApi();
-  }
-
-
-
-  hitApi() {
-    this.loading = true;
-    this.error = false;
-    this.api.hit()
-    .subscribe(
-      data => {
-        this.data = data; this.loading = false;
-
-      },
-      error => {console.log('error ', error); this.error = true; this.loading = false; }
-    );
+    this.getWeather();
   }
 
   updateResponse(response: { data: any; location: string; }) {
     this.data = response.data;
     this.location = response.location;
   }
+
+  getWeather()
+  {
+    this.loading = true;
+    this.error = false;
+    this.api.getWeather('bengaluru')
+    .subscribe(
+      (data:any) => {
+        this.location = data.location;
+        this.data = data.forecastdata.body;
+        console.log(data.forecastdata.body.daily);
+        this.loading = false
+      },
+      error => {
+        console.log(error)
+        this.loading = false
+        this.error=true;
+      }
+    )
+  }
+
+  
 
 }

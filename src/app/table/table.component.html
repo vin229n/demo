@@ -10,9 +10,9 @@
       <p class="card-text" *ngIf="i === 0"> {{response?.currently.summary}}</p>
       <p class="card-text" *ngIf="i !== 0"> {{day?.summary}}</p>
       <p class="card-text" *ngIf="i === 0">
-        <span class="font-weight-bold">Temperature:</span> {{response?.currently.temperature}} F
-        <span class="font-weight-bold ml-3">Humidity:</span> {{(response?.currently.humidity)*100}}% 
-        <span class="font-weight-bold ml-3">Wind:</span> {{response?.currently.windSpeed}} mph
+        <span class="mr-4"><span class="font-weight-bold ">Temperature: </span> {{response?.currently.temperature}} F</span>
+        <span class="mr-4"><span class="font-weight-bold ">Humidity:</span> {{((response?.currently.humidity)*100) | number:'1.0-3'}}% </span>
+        <span class="mr-4"><span class="font-weight-bold ">Wind:</span> {{response?.currently.windSpeed}} mph</span>
       </p>
     </div>
   </div>

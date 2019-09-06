@@ -12,7 +12,11 @@ button:focus{
 
 }
 
-.btnn{
-    margin: 10px;
-   
+.li{
+    padding: 5px;
 }
+
+.li:hover{
+    background: #eee;
+}
+
