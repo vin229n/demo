@@ -7,4 +7,4 @@ RUN mkdir test
 ADD . /test
 WORKDIR /test
 RUN npm i
-CMD ng serve
+CMD nohup ng serve
