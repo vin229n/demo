@@ -8,7 +8,7 @@ export class ApiService {
   constructor(private http: HttpClient) { }
 
   getWeather(address){
-    const url = 'http://localhost:8000/weather?address='+address;
+    const url = 'api/weather?address='+address;
     return this.http.get(url);
   }
 

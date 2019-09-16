@@ -60,27 +60,27 @@ export class LoginComponent implements OnInit {
       this.invalidCredentials = false;
       this.connection = true;
       this.loading = true;
-      this.auth.getUsers()
+      this.auth.authenticate(this.form.value)
       .subscribe(
-        (users: any) => {
-          console.log(users);
-          users.forEach((user) => {
-            if (user.name === this.form.value.name && user.password === this.form.value.password) {
-              this.auth.logIn(user);
-              this.router.navigate(['']);
-              return;
-            }
-          });
-          this.invalidCredentials = true;
+        (user: any) => {
+          
+          this.auth.logIn(user.user);
+          this.router.navigate(['']);
           this.loading = false;
-          setTimeout(() => {
-            this.invalidCredentials = false;
-          }, 3000);
         },
         (error) => {
-          console.log('Error in AuthenticationService login', error);
+          
           this.loading = false;
-          this.connection = false;
+          if(error.status === 401){
+            this.invalidCredentials = true;
+            setTimeout(() => {
+              this.invalidCredentials = false;
+            }, 3000);
+          }
+          else{
+            this.connection = false;
+          }
+          
         }
       );
     }

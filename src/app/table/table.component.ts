@@ -9,6 +9,8 @@ import { DatePipe, formatDate } from '@angular/common';
 })
 export class TableComponent implements OnInit {
 @Input() response;
+attr:string='temperature';
+toggle='More'
 
 chart = false;
 
@@ -18,6 +20,23 @@ chart = false;
 
   toggleChart(index) {
     this.chart = !this.chart;
+    this.toggle = this.toggle === 'More'?'Less':'More';
+  }
+
+  temp()
+  {
+    this.attr= 'temperature';
+    
+  }
+
+  wind()
+  {
+    this.attr = 'windspeed';
+  }
+
+  humidity()
+  {
+    this.attr = 'humidity';
   }
 
 }

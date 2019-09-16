@@ -20,6 +20,7 @@ export class HeaderComponent implements OnInit {
 
   ngOnInit() {
     this.user = this.auth.getUser();
+    //alert(this.user.name);
   }
 
   logout() {
